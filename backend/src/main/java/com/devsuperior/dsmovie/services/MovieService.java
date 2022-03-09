@@ -52,8 +52,8 @@ public class MovieService {
 	}
 	
 	@Transactional
-	public void saveAndFlush(Movie movie) {
-		repository.saveAndFlush(movie);
+	public Movie saveAndFlush(Movie movie) {
+		return repository.saveAndFlush(movie);
 	}
 
 }
