@@ -11,19 +11,23 @@ import com.devsuperior.dsmovie.repositories.UserRepository;
 
 @Service
 public class UserService {
-	
+
 	@Autowired
 	private UserRepository repository;
-	
+
 	public UserDTO findByEmail(String email) {
 		Optional<User> user = repository.findByEmail(email);
-		if(user.isEmpty()) {
+		UserDTO dto = null;
+		if (user.isEmpty()) {
 			User newUser = new User();
 			newUser.setEmail(email);
 			repository.save(newUser);
-			return null;
+			dto = new UserDTO(newUser);
+			return dto;
+		} else {
+			return dto = new UserDTO(user.get());
 		}
-		return new UserDTO(user.get());
+
 	}
 
 }

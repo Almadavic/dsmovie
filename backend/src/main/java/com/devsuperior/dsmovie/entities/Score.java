@@ -22,6 +22,14 @@ public class Score {
 		this.value=value;
 	}
 	
+	public Movie getMovie() {
+		return id.getMovie();
+	}
+	
+	public User getUser() {
+		return id.getUser();
+	}
+	
 	public void setMovie(Movie movie) {
 		id.setMovie(movie);
 	}

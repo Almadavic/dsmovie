@@ -26,7 +26,7 @@ public class MovieService {
 	}
 	
 	@Transactional(readOnly=true) 
-		public MovieDTO findById(Long id) {
+		public MovieDTO findByIdDto(Long id) {
 		Optional<Movie> movie = repository.findById(id);
 		if(movie.isEmpty()) {
 			return null;
@@ -34,6 +34,26 @@ public class MovieService {
 		return new MovieDTO(movie.get());
 	}
 	
+	@Transactional(readOnly=true) 
+	public Movie findById(Long id) {
+	Optional<Movie> movie = repository.findById(id);
+	if(movie.isEmpty()) {
+		return null;
+	}
+	return movie.get();
+}
 
+	
+	
+	
+	@Transactional
+     public void save(Movie movie) {
+		repository.save(movie);
+	}
+	
+	@Transactional
+	public void saveAndFlush(Movie movie) {
+		repository.saveAndFlush(movie);
+	}
 
 }

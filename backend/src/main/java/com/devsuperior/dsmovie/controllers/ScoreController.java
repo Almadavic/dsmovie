@@ -1,11 +1,14 @@
 package com.devsuperior.dsmovie.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.devsuperior.dsmovie.dto.MovieDTO;
 import com.devsuperior.dsmovie.dto.ScoreDTO;
 import com.devsuperior.dsmovie.services.ScoreService;
 
@@ -18,7 +21,7 @@ public class ScoreController {
 	
 	
 	@PutMapping
-	public ScoreDTO saveScore(@RequestBody ScoreDTO dto) {
+	public MovieDTO saveScore(@Valid @RequestBody ScoreDTO dto) {
 		return service.saveScore(dto);
 	}
 
