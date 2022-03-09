@@ -58,5 +58,15 @@ public class MovieDTO {
 		this.id = id;
 	}
 	
+	public Movie toMovie() {
+		Movie movie = new Movie();
+		movie.setCount(count);
+		movie.setId(id);
+		movie.setImage(image);
+		movie.setScore(score);
+		movie.setTitle(title);
+		return movie;
+	}
+	
 
 }
