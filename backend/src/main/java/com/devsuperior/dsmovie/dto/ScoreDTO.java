@@ -1,21 +1,26 @@
 package com.devsuperior.dsmovie.dto;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.devsuperior.dsmovie.entities.Score;
 import com.devsuperior.dsmovie.services.UserService;
 
 public class ScoreDTO {
-	
-	@NotBlank
+
+	@NotNull
 	private Long movieId;
-	@NotBlank
+
+	@NotEmpty
+	@NotNull
 	private String email;
-	@NotBlank
+
+
+	@NotNull
 	private Double score;
-	
+
 	public ScoreDTO() {
-		
+
 	}
 
 	public Long getMovieId() {
@@ -41,12 +46,12 @@ public class ScoreDTO {
 	public void setScore(Double score) {
 		this.score = score;
 	}
-	
+
 	public Score toScore(UserService userService) {
 		Score score = new Score();
 		UserDTO user = userService.findByEmail(email);
 		score.setUser(user.toUser());
-		score.setValue(this.score);
+		score.setValue(getScore());
 		return score;
 	}
 

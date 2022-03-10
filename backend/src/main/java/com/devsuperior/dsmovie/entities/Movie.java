@@ -2,11 +2,11 @@ package com.devsuperior.dsmovie.entities;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,20 +16,20 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="tb_movie")
+@Table(name = "tb_movie")
 public class Movie implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
 	private Double score;
 	private Integer count;
 	private String image;
-	
+
 	@JsonIgnore
-	@OneToMany(mappedBy="id.movie", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "id.movie", cascade = CascadeType.ALL)
 	private Set<Score> scores = new HashSet<>();
 
 	public Movie() {
@@ -42,6 +42,27 @@ public class Movie implements Serializable {
 		this.score = score;
 		this.count = count;
 		this.image = image;
+	}
+
+	public void addScore(Score score) {
+		scores.add(score);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Movie other = (Movie) obj;
+		return Objects.equals(id, other.id);
 	}
 
 	public Long getId() {
@@ -87,6 +108,5 @@ public class Movie implements Serializable {
 	public Set<Score> getScores() {
 		return scores;
 	}
-
 
 }

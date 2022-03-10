@@ -3,6 +3,7 @@ package com.devsuperior.dsmovie.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,19 +15,23 @@ import com.devsuperior.dsmovie.services.MovieService;
 @RestController
 @RequestMapping(value = "/movies")
 public class MovieController {
-	
+
 	@Autowired
 	private MovieService service;
-	
-	
+
 	@GetMapping()
-	public Page<MovieDTO> findAll(Pageable pageable) {
-		return service.findAll(pageable);
+	public ResponseEntity<Page<MovieDTO>> findAll(Pageable pageable) {
+		 return ResponseEntity.ok().body(service.findAll(pageable));
 	}
-	
+
 	@GetMapping(value = "/{id}")
-	public MovieDTO findByIdDto(@PathVariable Long id) {
-		return service.findByIdDto(id);
+	public ResponseEntity<MovieDTO> findByIdDto(@PathVariable Long id) {
+		MovieDTO dto = service.findByIdDto(id);
+		if(dto==null) {
+			return ResponseEntity.notFound().build();
+		} else {
+		return ResponseEntity.ok().body(dto);
+		}
 	}
 
 }

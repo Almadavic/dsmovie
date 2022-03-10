@@ -18,39 +18,36 @@ public class MovieService {
 	@Autowired
 	private MovieRepository repository;
 
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public Page<MovieDTO> findAll(Pageable pageable) {
 		Page<Movie> result = repository.findAll(pageable);
 		Page<MovieDTO> page = result.map(x -> new MovieDTO(x));
 		return page;
 	}
-	
-	@Transactional(readOnly=true) 
-		public MovieDTO findByIdDto(Long id) {
+
+	@Transactional(readOnly = true)
+	public MovieDTO findByIdDto(Long id) {
 		Optional<Movie> movie = repository.findById(id);
-		if(movie.isEmpty()) {
+		if (movie.isEmpty()) {
 			return null;
 		}
 		return new MovieDTO(movie.get());
 	}
-	
-	@Transactional(readOnly=true) 
-	public Movie findById(Long id) {
-	Optional<Movie> movie = repository.findById(id);
-	if(movie.isEmpty()) {
-		return null;
-	}
-	return movie.get();
-}
 
-	
-	
-	
-	@Transactional
-     public void save(Movie movie) {
-		repository.save(movie);
+	@Transactional(readOnly = true)
+	public Movie findById(Long id) {
+		Optional<Movie> movie = repository.findById(id);
+		if (movie.isEmpty()) {
+			return null;
+		}
+		return movie.get();
 	}
-	
+
+	@Transactional
+	public Movie save(Movie movie) {
+		return repository.save(movie);
+	}
+
 	@Transactional
 	public Movie saveAndFlush(Movie movie) {
 		return repository.saveAndFlush(movie);
