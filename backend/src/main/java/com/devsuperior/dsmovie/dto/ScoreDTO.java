@@ -15,7 +15,6 @@ public class ScoreDTO {
 	@NotNull
 	private String email;
 
-
 	@NotNull
 	private Double score;
 

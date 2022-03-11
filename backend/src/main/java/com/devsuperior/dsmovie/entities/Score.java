@@ -64,10 +64,11 @@ public class Score {
 	public void setValue(Double value) {
 		this.value = value;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Movie : "+id.getMovie().getTitle()+", User : "+id.getUser().getEmail()+", Value : "+getValue();
+		return "Movie : " + id.getMovie().getTitle() + ", User : " + id.getUser().getEmail() + ", Value : "
+				+ getValue();
 	}
 
 }
