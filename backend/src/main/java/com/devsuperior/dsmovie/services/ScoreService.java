@@ -28,7 +28,6 @@ public class ScoreService {
 		Movie movie = movieService.findById(dto.getMovieId());
 
 		score.setMovie(movie);
-
 		score = repository.saveAndFlush(score); // Aqui salva o score e o movie no banco de dados. Pois o movie está
 												// associado ao score.
 
