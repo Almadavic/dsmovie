@@ -1,6 +1,7 @@
 package com.devsuperior.dsmovie.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,7 @@ public class ScoreService {
 	private UserService userService;
 
 	@Transactional
+	@CacheEvict(value = "/findAllMovies")
 	public MovieDTO saveScore(ScoreDTO dto) {
 		Score score = dto.toScore(userService);
 		Movie movie = movieService.findById(dto.getMovieId());
