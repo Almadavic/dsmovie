@@ -24,7 +24,7 @@ public class ScoreService {
 	private UserService userService;
 
 	@Transactional
-	@CacheEvict(value = "/findAllMovies")
+	@CacheEvict(value = "/findAllMovies" ,allEntries=true)
 	public MovieDTO saveScore(ScoreDTO dto) {
 		Score score = dto.toScore(userService);
 		Movie movie = movieService.findById(dto.getMovieId());
