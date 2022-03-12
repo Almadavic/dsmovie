@@ -23,7 +23,7 @@ public class MovieController {
 
 	@GetMapping
 	public ResponseEntity<Page<MovieDTO>> findAll(
-			@PageableDefault(page = 0, size = 12, sort = "id", direction = Direction.ASC) Pageable pageable) {
+			@PageableDefault( size = 12) Pageable pageable) {
 		return ResponseEntity.ok().body(service.findAll(pageable));
 	}
 

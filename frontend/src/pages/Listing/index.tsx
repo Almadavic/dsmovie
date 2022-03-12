@@ -18,7 +18,13 @@ function Listing(){
         });
     },[]);
 
-
+     const movie = {
+      id:1,
+      image : "https://www.themoviedb.org/t/p/w533_and_h300_bestv2/jBJWaqoSCiARWtfV0GlqHrcdidd.jpg",
+      title : "The Witcher",
+      count : 2,
+      score:4.5
+     };
     
     
     return (
@@ -30,19 +36,19 @@ function Listing(){
        <div className="container">
        <div className="row">
           <div className="col-sm-6 col-lg-4 col-xl-3 mb-3">
-          <MovieCard/>
+          <MovieCard movie={movie}/>
           </div>
           <div className="col-sm-6 col-lg-4 col-xl-3  mb-3">
-          <MovieCard/>
+          <MovieCard movie={movie}/>
           </div>
           <div className="col-sm-6 col-lg-4 col-xl-3  mb-3">
-          <MovieCard/>
+          <MovieCard movie={movie}/>
           </div>
           <div className="col-sm-6 col-lg-4 col-xl-3  mb-3">
-          <MovieCard/>
+          <MovieCard movie={movie}/>
           </div>
           <div className="col-sm-6 col-lg-4 col-xl-3  mb-3">
-          <MovieCard/>
+          <MovieCard movie={movie}/>
           </div>
        </div>
        </div>
